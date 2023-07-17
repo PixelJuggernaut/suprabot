@@ -35,6 +35,13 @@ module.exports = {
     DM_EMBED: "#36393F",
   },
 
+  DASHBOARD: {
+    enabled: false, // enable or disable dashboard
+    baseURL: "http://localhost:8080", // base url
+    failureURL: "http://localhost:8080", // failure redirect url
+    port: "8080", // port to run the bot on
+  },
+
   ECONOMY: {
     ENABLED: false,
     CURRENCY: "₪",
