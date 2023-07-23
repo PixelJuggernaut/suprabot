@@ -1,9 +1,9 @@
 {
-  "name": "discord-js-bot",
-  "version": "5.3.0",
-  "description": "An open-source, multipurpose discord bot built using discord-js",
+  "name": "suprabot",
+  "version": "2.0.2",
+  "description": "Multipurpose discord bot built using discord-js",
   "main": "bot.js",
-  "author": "Sai Teja M",
+  "author": "PixelJuggernaut",
   "license": "ISC",
   "engines": {
     "node": ">=16.11.0"
@@ -13,13 +13,13 @@
     "start": "node .",
     "format": "prettier --write src"
   },
-  "homepage": "https://github.com/saiteja-madha/discord-js-bot#readme",
+  "homepage": "https://github.com/pixeljuggernaut/suprabot#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saiteja-madha/discord-js-bot.git"
+    "url": "git+https://github.com/pixeljuggernaut/suprabot.git"
   },
   "bugs": {
-    "url": "https://github.com/saiteja-madha/discord-js-bot/issues"
+    "url": "https://github.com/pixeljuggernaut/suprabot/issues"
   },
   "dependencies": {
     "@lavaclient/queue": "^2.1.1",
@@ -64,20 +64,16 @@
     "zlib-sync": "^0.1.8"
   },
   "devDependencies": {
-    "eslint": "^8.38.0",
+    "eslint": "^8.45.0",
     "eslint-plugin-jsdoc": "^41.1.2",
     "node": "^16.19.1",
     "nodemon": "^2.0.22",
     "prettier": "2.8.7"
   },
   "keywords": [
-    "discord",
-    "discord.js",
-    "discord-bot",
-    "open-source",
+    "suprabot",
     "bot",
-    "multipurpose",
-    "multi-purpose-bot"
+    "multipurpose"
   ],
   "_moduleAliases": {
     "@root": ".",

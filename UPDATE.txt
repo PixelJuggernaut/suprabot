@@ -1,0 +1,10 @@
+To do:
+
+- Add premium system
+- Add new dashboard
+- Add new commands for premium only
+
+Done:
+
+- Weather Api added
+- Strange API added
