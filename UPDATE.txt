@@ -8,3 +8,4 @@ Done:
 
 - Weather Api added
 - Strange API added
+- Botlinks command added
