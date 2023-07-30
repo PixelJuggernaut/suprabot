@@ -9,3 +9,5 @@ Done:
 - Weather Api added
 - Strange API added
 - Botlinks command added
+- Covid informations command removed
+- Remind command added

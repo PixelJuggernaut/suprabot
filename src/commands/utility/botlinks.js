@@ -4,7 +4,7 @@ exports.run = (client, message, args) => {
     message.delete()
 
     let bot = new Discord.RichEmbed()
-        .setAuthor("Zeltux","https://cdn.discordapp.com/attachments/632238663094370366/632916675808854026/profile.png")
+        .setAuthor("PixelJuggernaut","https://cdn.discordapp.com/attachments/632238663094370366/632916675808854026/profile.png")
         .setTitle("Supra - Quick Links")
         .setColor(`#FF0062`)
         .addField(`Website`,`[Website](https://suprabot.vercel.app/)`, true)
