@@ -29,7 +29,7 @@ module.exports = class AniQuote extends Command {
   // EXEC - PREFIX
   async run(bot, message, settings) {
     if (settings.ModerationClearToggle && message.deletable) message.delete();
-    const { quote, anime, id, name } = randomQuote();
+    const { quote, anime, name } = randomQuote();
 
     const res = await searchAnime(message.args.join('') || anime, 0).catch(() => { }) || [];
 
@@ -50,7 +50,7 @@ module.exports = class AniQuote extends Command {
     const member = interaction.user;
     const channel = guild.channels.cache.get(interaction.channelId);
 
-    const { quote, anime, id, name } = randomQuote();
+    const { quote, anime, name } = randomQuote();
 
     const res = await searchAnime(args.get('anime')?.value || anime, 0).catch(() => { }) || [];
 

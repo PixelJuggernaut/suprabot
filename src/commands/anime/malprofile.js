@@ -42,7 +42,7 @@ module.exports = class Malprofile extends Command {
 
     if (!query) {
       return message.channel.error('misc:INCORRECT_FORMAT', { commandExample: message.translate('misc:AJUDA_INFO', { USAGE: settings.prefix.concat(message.translate(`Animes/${this.help.name}:USAGE`, { EXAMPLE: settings.prefix.concat(message.translate(`Animes/${this.help.name}:EXAMPLE`)) })) }) }).then(async (m) => { if (settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 15000 }) } });
-    };
+    }
 
     const profile = await fetch(`https://api.jikan.moe/v4/users/${encodeURI(query)}/full`, { method: 'GET', headers: { "Content-Type": "application/json", "Accept": "application/json" } }).then(res => res.json()).catch(err => err);
     const favorites = await fetch(`https://api.jikan.moe/v4/users/${encodeURI(query)}/favorites`, { method: 'GET', headers: { "Content-Type": "application/json", "Accept": "application/json" } }).then(res => res.json()).catch(err => err);
@@ -51,13 +51,13 @@ module.exports = class Malprofile extends Command {
       let err;
       if (profile && profile.data.status >= 500) {
         err = message.translate('Animes/malprofile:AMAL_DESC')
-      } else if (response && profile.data.status >= 400) {
+      } else if (profile.data.status >= 400) {
         err = message.translate('Animes/malprofile:AMAL_DESC1')
       } else {
         err = message.translate('Animes/malprofile:AMAL_DESC2', { query: query })
-      };
+      }
       return message.channel.send(err).then(async (m) => { if (settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 15000 }) } });
-    };
+    }
 
     const fav_anime = text.joinArrayAndLimit(favorites.data.anime.map((entry) => {
       return `[${entry.title}](${entry.url.split('/').splice(0, 5).join('/')})`;
@@ -104,16 +104,16 @@ module.exports = class Malprofile extends Command {
           }).join('\n') + '```'
         }, {
           name: `${message.translate('Animes/malprofile:AMAL_DESC11')}`,
-          value: fav_anime.text + (!!fav_anime.excess ? ` ${message.translate('Animes/malprofile:AMAL_DESC12')} ${fav_anime.excess} ${message.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${message.translate('Animes/malprofile:AMAL_DESC14')}`
+          value: fav_anime.text + (fav_anime.excess ? ` ${message.translate('Animes/malprofile:AMAL_DESC12')} ${fav_anime.excess} ${message.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${message.translate('Animes/malprofile:AMAL_DESC14')}`
         }, {
           name: `${message.translate('Animes/malprofile:AMAL_DESC15')}`,
-          value: fav_manga.text + (!!fav_manga.excess ? ` ${message.translate('Animes/malprofile:AMAL_DESC12')} ${fav_manga.excess} ${message.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${message.translate('Animes/malprofile:AMAL_DESC14')}`
+          value: fav_manga.text + (fav_manga.excess ? ` ${message.translate('Animes/malprofile:AMAL_DESC12')} ${fav_manga.excess} ${message.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${message.translate('Animes/malprofile:AMAL_DESC14')}`
         }, {
           name: `${message.translate('Animes/malprofile:AMAL_DESC16')}`,
-          value: fav_characters.text + (!!fav_characters.excess ? ` ${message.translate('Animes/malprofile:AMAL_DESC12')} ${fav_characters.excess} ${message.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${message.translate('Animes/malprofile:AMAL_DESC14')}`
+          value: fav_characters.text + (fav_characters.excess ? ` ${message.translate('Animes/malprofile:AMAL_DESC12')} ${fav_characters.excess} ${message.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${message.translate('Animes/malprofile:AMAL_DESC14')}`
         }, {
           name: `${message.translate('Animes/malprofile:AMAL_DESC17')}`,
-          value: fav_people.text + (!!fav_people.excess ? ` ${message.translate('Animes/malprofile:AMAL_DESC12')} ${fav_people.excess} ${message.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${message.translate('Animes/malprofile:AMAL_DESC14')}`
+          value: fav_people.text + (fav_people.excess ? ` ${message.translate('Animes/malprofile:AMAL_DESC12')} ${fav_people.excess} ${message.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${message.translate('Animes/malprofile:AMAL_DESC14')}`
         }
       ])
     return message.channel.send({ embeds: [embed] }).then(async (m) => { if (settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 60000 }) } });
@@ -135,13 +135,13 @@ module.exports = class Malprofile extends Command {
         let err;
         if (profile && profile.data.status >= 500) {
           err = guild.translate('Animes/malprofile:AMAL_DESC')
-        } else if (response && profile.data.status >= 400) {
+        } else if (profile.data.status >= 400) {
           err = guild.translate('Animes/malprofile:AMAL_DESC1')
         } else {
           err = guild.translate('Animes/malprofile:AMAL_DESC2', { query: query })
-        };
+        }
         return interaction.editReply(err).then(async (m) => { if (guild.settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 15000 }) } });
-      };
+      }
   
       const fav_anime = text.joinArrayAndLimit(favorites.data.anime.map((entry) => {
         return `[${entry.title}](${entry.url.split('/').splice(0, 5).join('/')})`;
@@ -188,16 +188,16 @@ module.exports = class Malprofile extends Command {
             }).join('\n') + '```'
           }, {
             name: `${guild.translate('Animes/malprofile:AMAL_DESC11')}`,
-            value: fav_anime.text + (!!fav_anime.excess ? ` ${guild.translate('Animes/malprofile:AMAL_DESC12')} ${fav_anime.excess} ${guild.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${guild.translate('Animes/malprofile:AMAL_DESC14')}`
+            value: fav_anime.text + (fav_anime.excess ? ` ${guild.translate('Animes/malprofile:AMAL_DESC12')} ${fav_anime.excess} ${guild.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${guild.translate('Animes/malprofile:AMAL_DESC14')}`
           }, {
             name: `${guild.translate('Animes/malprofile:AMAL_DESC15')}`,
-            value: fav_manga.text + (!!fav_manga.excess ? ` ${guild.translate('Animes/malprofile:AMAL_DESC12')} ${fav_manga.excess} ${guild.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${guild.translate('Animes/malprofile:AMAL_DESC14')}`
+            value: fav_manga.text + (fav_manga.excess ? ` ${guild.translate('Animes/malprofile:AMAL_DESC12')} ${fav_manga.excess} ${guild.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${guild.translate('Animes/malprofile:AMAL_DESC14')}`
           }, {
             name: `${guild.translate('Animes/malprofile:AMAL_DESC16')}`,
-            value: fav_characters.text + (!!fav_characters.excess ? ` ${guild.translate('Animes/malprofile:AMAL_DESC12')} ${fav_characters.excess} ${guild.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${guild.translate('Animes/malprofile:AMAL_DESC14')}`
+            value: fav_characters.text + (fav_characters.excess ? ` ${guild.translate('Animes/malprofile:AMAL_DESC12')} ${fav_characters.excess} ${guild.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${guild.translate('Animes/malprofile:AMAL_DESC14')}`
           }, {
             name: `${guild.translate('Animes/malprofile:AMAL_DESC17')}`,
-            value: fav_people.text + (!!fav_people.excess ? ` ${guild.translate('Animes/malprofile:AMAL_DESC12')} ${fav_people.excess} ${guild.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${guild.translate('Animes/malprofile:AMAL_DESC14')}`
+            value: fav_people.text + (fav_people.excess ? ` ${guild.translate('Animes/malprofile:AMAL_DESC12')} ${fav_people.excess} ${guild.translate('Animes/malprofile:AMAL_DESC13')}` : '') || `${guild.translate('Animes/malprofile:AMAL_DESC14')}`
           }
         ])
       return interaction.editReply({ embeds: [embed] }).then(async (m) => { if (guild.settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 60000 }) } });

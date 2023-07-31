@@ -25,6 +25,7 @@
     "@lavaclient/queue": "^2.1.1",
     "@lavaclient/spotify": "^3.1.0",
     "@vitalets/google-translate-api": "^9.1.0",
+    "animequotes": "^2.0.0",
     "ascii-table": "0.0.9",
     "btoa": "^1.2.1",
     "common-tags": "^1.8.2",
@@ -39,6 +40,7 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "fixedsize-map": "^1.0.1",
+    "html-to-markdown": "^1.0.0",
     "iso-639-1": "^2.1.15",
     "lavaclient": "^4.1.1",
     "module-alias": "^2.2.3",
@@ -46,6 +48,7 @@
     "mongoose": "^7.0.4",
     "nekos.life": "^3.0.0",
     "node-fetch": "^2.6.7",
+    "node-kitsu": "^1.1.1",
     "os": "^0.1.2",
     "pino": "^8.11.0",
     "pino-pretty": "^10.0.0",
@@ -55,7 +58,8 @@
     "string-progressbar": "^1.0.4",
     "table": "^6.8.1",
     "timestamp-to-date": "^1.1.0",
-    "twemoji-parser": "^14.0.0"
+    "twemoji-parser": "^14.0.0",
+    "undici": "^5.22.1"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.7",

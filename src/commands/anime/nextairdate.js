@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Dependências
 const { Embed } = require(`../../utils`),
   { PermissionsBitField: { Flags }, ApplicationCommandOptionType } = require('discord.js'),
@@ -59,7 +60,7 @@ module.exports = class Nextairdate extends Command {
           message.translate('Animes/nextairdate:APEP_DESC4')
         ].join(''))
       return message.channel.send({ embeds: [embed] }).then(async (m) => { if (settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 15000 }) } });
-    };
+    }
 
     if (res.errors && res.errors.some(e => e.message === message.translate('Animes/nextairdate:APEP_DESC'))) {
       embed.setAuthor({ name: message.translate('Animes/nextairdate:APEP_DESC'), iconURL: 'https://cdn.discordapp.com/emojis/767062250279927818.png?v=1' })
@@ -68,7 +69,7 @@ module.exports = class Nextairdate extends Command {
           message.translate('Animes/nextairdate:APEP_DESC6')
         ].join(''))
       return message.channel.send({ embeds: [embed] }).then(async (m) => { if (settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 15000 }) } });
-    };
+    }
 
     const [now, next, later] = [res.data.Media || res.data.Page.media].flat().filter(x => x.nextAiringEpisode).sort((A, B) => A.nextAiringEpisode.timeUntilAiring - B.nextAiringEpisode.timeUntilAiring)
     
@@ -148,7 +149,7 @@ module.exports = class Nextairdate extends Command {
           }
         ])
       return message.channel.send({ embeds: [embed] }).then(m => m.timedDelete({ timeout: 90000 }));
-    };
+    }
   }
   // EXEC - SLASH
   async callback(bot, interaction, guild, args) {
@@ -178,7 +179,7 @@ module.exports = class Nextairdate extends Command {
             guild.translate('Animes/nextairdate:APEP_DESC4')
           ].join(''))
         return interaction.editReply({ embeds: [embed] }).then(async (m) => { if (guild.settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 15000 }) } });
-      };
+      }
 
       if (res.errors && res.errors.some(e => e.message === guild.translate('Animes/nextairdate:APEP_DESC'))) {
         embed.setAuthor({ name: guild.translate('Animes/nextairdate:APEP_DESC'), iconURL: 'https://cdn.discordapp.com/emojis/767062250279927818.png?v=1' })
@@ -187,7 +188,7 @@ module.exports = class Nextairdate extends Command {
             guild.translate('Animes/nextairdate:APEP_DESC6')
           ].join(''))
         return interaction.editReply({ embeds: [embed] }).then(async (m) => { if (guild.settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 15000 }) } });
-      };
+      }
 
       const [now, next, later] = [res.data.Media || res.data.Page.media].flat().filter(x => x.nextAiringEpisode).sort((A, B) => A.nextAiringEpisode.timeUntilAiring - B.nextAiringEpisode.timeUntilAiring)
 

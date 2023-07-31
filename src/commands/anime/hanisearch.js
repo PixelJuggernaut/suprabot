@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const { PermissionsBitField: { Flags }, ApplicationCommandOptionType, GuildEmoji } = require('discord.js'),
   { Embed, HopePaginator } = require(`../../utils`),
   { HAnimeAPI } = require('hanime'),
@@ -42,13 +43,13 @@ module.exports = class Hanisearch extends Command {
 
     if (!query) {
       return message.channel.error('misc:INCORRECT_FORMAT', { commandExample: message.translate('misc:AJUDA_INFO', { USAGE: settings.prefix.concat(message.translate(`Animes/${this.help.name}:USAGE`, { EXAMPLE: settings.prefix.concat(message.translate(`Animes/${this.help.name}:EXAMPLE`)) })) }) }).then(async (m) => { if (settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 15000 }) } });
-    };
+    }
 
     const res = await hanime.search(query);
 
     if (!res.hits) {
       return message.channel.error(`**${message.author}**, ${message.translate('Animes/hanisearch:AHENTAI_DESC')} **${query}**!`);
-    };
+    }
 
     const pages = new Pages(res.videos.splice(0, 10).map((entry, i, a) =>
       new Embed(bot, message.guild)
@@ -93,7 +94,7 @@ module.exports = class Hanisearch extends Command {
 
     if (pages.size === 1) {
       return;
-    };
+    }
 
     const prev = bot.emojis.cache.get('855513155366813746') || '◀';
     const next = bot.emojis.cache.get('855513155332472832') || '▶';
@@ -106,7 +107,7 @@ module.exports = class Hanisearch extends Command {
 
     for (let i = 0; i < navigators.length; i++) {
       await msg.react(navigators[i]);
-    };
+    }
 
     collector.on('collect', async reaction => {
 
@@ -120,7 +121,7 @@ module.exports = class Hanisearch extends Command {
         case terminate instanceof GuildEmoji ? terminate.name : terminate:
           collector.stop();
           break;
-      };
+      }
 
       await reaction.users.remove(message.author.id);
       timeout.refresh();
@@ -143,7 +144,7 @@ module.exports = class Hanisearch extends Command {
 
       if (!res.hits) {
         return interaction.editReply(`**${member}**, ${guild.translate('Animes/hanisearch:AHENTAI_DESC')} **${query}**!`);
-      };
+      }
 
       // get total page number
       let pagesNum = Math.ceil(res.videos.length / 10);
@@ -207,4 +208,4 @@ function reviseURL(url) {
   const baseurl = 'https://i1.wp.com/static-assets.droidbuzz.top/';
   const ext = String(url).match(/images\/(covers|posters)\/[\-\w]{1,}\.(jpe?g|png|gif)/i);
   return ext ? baseurl + ext[0] : null;
-};;
+}

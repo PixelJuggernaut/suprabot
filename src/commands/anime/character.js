@@ -64,7 +64,7 @@ module.exports = class Character extends Command {
 
     if (!character.data || character.data.error) {
       return await msg.edit({ embeds: [embed] }).catch(() => null) || message.channel.send({ embeds: [embed] });
-    };
+    }
 
     const { mal_id } = character.data[0];
 
@@ -72,7 +72,7 @@ module.exports = class Character extends Command {
     if (!res.data || res.data.error) {
       embed.setDescription(`**${message.member.displayName}**, ${errstatus[character.data.status] || `${badge} ${message.translate('Animes/character:APERSO_DESC6')} ${character.data.status}`}`);
       return await msg.edit({ embeds: [embed] }).catch(() => { }) || message.channel.send({ embeds: [embed] });
-    };
+    }
 
     const wait = require('node:timers/promises').setTimeout;
     const getCharacterAnime = await fetch(`https://api.jikan.moe/v4/characters/${mal_id}/anime`, { method: 'GET', headers: { "Content-Type": "application/json", "Accept": "application/json" } }).then(res => res.json()).catch(err => err);
@@ -125,7 +125,7 @@ module.exports = class Character extends Command {
                 return `...${message.translate('Animes/character:APERSO_DESC10')} ${getCharacterVoiceActors.data.length - 8} ${message.translate('Animes/character:APERSO_DESC11')}`;
               } else {
                 return `${flag || va.language} [${va.person.name}](${va.url})`;
-              };
+              }
             }).join('\n') || '\u200b'
           };
         })
@@ -149,8 +149,6 @@ module.exports = class Character extends Command {
         .setThumbnail('https://i.imgur.com/UH1StAo.png')
         .setFooter({ text: `${guild.translate('misc:FOOTER_GLOBALL', { username: member.username })} ${guild.translate('misc:FOOTER_GLOBAL', { prefix: '/' })}${guild.translate(`Animes/${this.help.name}:USAGEE`)}`, iconURL: `${member.displayAvatarURL({ extension: 'png', forceStatic: true, size: 1024 })}` })
 
-      const msg = await interaction.editReply({ embeds: [embed] });
-
       const character = await fetch(`https://api.jikan.moe/v4/characters?q=${encodeURI(query)}&order_by=favorites&sort=desc&page=1`, { method: 'GET', headers: { "Content-Type": "application/json", "Accept": "application/json" } }).then(res => res.json()).catch(err => err);
 
       const errstatus = {
@@ -167,7 +165,7 @@ module.exports = class Character extends Command {
 
       if (!character.data || character.data.error) {
         return await interaction.editReply({ embeds: [embed] }).then(async (m) => { if (guild.settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 60000 }) } });
-      };
+      }
 
       const { mal_id } = character.data[0];
 
@@ -175,7 +173,7 @@ module.exports = class Character extends Command {
       if (!res.data || res.data.error) {
         embed.setDescription(`**${member.displayName}**, ${errstatus[character.data.status] || `${badge} ${guild.translate('Animes/character:APERSO_DESC6')} ${character.data.status}`}`);
         return await interaction.editReply({ embeds: [embed] });
-      };
+      }
 
       const wait = require('node:timers/promises').setTimeout;
       const getCharacterAnime = await fetch(`https://api.jikan.moe/v4/characters/${mal_id}/anime`, { method: 'GET', headers: { "Content-Type": "application/json", "Accept": "application/json" } }).then(res => res.json()).catch(err => err);
@@ -228,7 +226,7 @@ module.exports = class Character extends Command {
                   return `...${guild.translate('Animes/character:APERSO_DESC10')} ${getCharacterVoiceActors.data.length - 8} ${guild.translate('Animes/character:APERSO_DESC11')}`;
                 } else {
                   return `${flag || va.language} [${va.person.name}](${va.url})`;
-                };
+                }
               }).join('\n') || '\u200b'
             };
           })

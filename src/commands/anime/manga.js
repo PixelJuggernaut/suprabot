@@ -70,7 +70,7 @@ module.exports = class Manga extends Command {
 
     if (!manga || manga.data.error || !manga.data.length) {
       return await msg.edit(embed).catch(() => null) || message.channel.send({ embeds: [embed] }).then(m => m.timedDelete({ timeout: 90000 }));
-    };
+    }
 
     const elapsed = Date.now() - message.createdAt;
     const pages = new Pages();
@@ -106,7 +106,7 @@ module.exports = class Manga extends Command {
 
     if (pages.size === 1) {
       return;
-    };
+    }
 
     const prev = bot.emojis.cache.get('855513155366813746') || '◀';
     const next = bot.emojis.cache.get('855513155332472832') || '▶';
@@ -119,7 +119,7 @@ module.exports = class Manga extends Command {
 
     for (let i = 0; i < navigators.length; i++) {
       await msg.react(navigators[i]);
-    };
+    }
 
     collector.on('collect', async reaction => {
 
@@ -133,7 +133,7 @@ module.exports = class Manga extends Command {
         case terminate instanceof GuildEmoji ? terminate.name : terminate:
           collector.stop();
           break;
-      };
+      }
 
       await reaction.users.remove(message.author.id);
       timeout.refresh();
@@ -181,7 +181,7 @@ module.exports = class Manga extends Command {
 
       if (!manga || manga.data.error || !manga.data.length) {
         return await msg.edit(embed).catch(() => null) || interaction.editReply({ embeds: [embed] }).then(m => m.timedDelete({ timeout: 90000 }));
-      };
+      }
 
       const elapsed = Math.floor(Math.random() * 6000);
 
@@ -192,7 +192,6 @@ module.exports = class Manga extends Command {
       // create pages for pageinator
       const pages = [];
       let i = 0;
-      let totalPage = manga.data.length;
       for (const res of manga.data.slice(0, 10)) {
         i++
         const embed = new Embed(bot, guild)

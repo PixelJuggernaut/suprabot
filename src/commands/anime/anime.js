@@ -4,8 +4,8 @@ const { Embed } = require(`../../utils`),
   { getInfoFromName } = require('mal-scraper'),
   moment = require('moment'),
   malProducers = require(`${process.cwd()}/assets/json/MAL_Producers.json`),
-  { malGenres } = require('../../utils/constants'),
-  text = require('../../utils/string')
+  { malGenres } = require('../../src/helpers/constants'),
+  text = require('../../src/helpers/string')
 var Command = require('../../structures/Command.js');
 
 module.exports = class Anime extends Command {

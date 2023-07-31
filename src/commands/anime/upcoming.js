@@ -47,7 +47,7 @@ module.exports = class Upcoming extends Command {
       type = types[types.findIndex(c => c.toLowerCase() === type.toLowerCase())];
     } else {
       type = null;
-    };
+    }
 
     const embed = new Embed(bot, message.guild)
       .setColor(65475)
@@ -71,11 +71,11 @@ module.exports = class Upcoming extends Command {
         .setThumbnail('https://i.imgur.com/UH1StAo.png');
 
       return await msg.edit({ embeds: [embed] }).catch(() => null) || await message.channel.send({ embeds: [embed] });
-    };
+    }
 
     if (types.includes(type)) {
       res.data = res.data.filter(f => f.type === type);
-    };
+    }
 
     if (res.data.length <= 1) {
       msg.delete()
@@ -109,13 +109,13 @@ module.exports = class Upcoming extends Command {
           })
       );
       index++;
-    };
+    }
 
     msg = await msg.edit({ embeds: [pages.firstPage] }).catch(() => null) || await message.channel.send({ embeds: [pages.firstPage] });
 
     if (pages.size === 1) {
       return;
-    };
+    }
 
     const prev = bot.emojis.cache.get('855513155366813746') || '◀';
     const next = bot.emojis.cache.get('855513155332472832') || '▶';
@@ -128,7 +128,7 @@ module.exports = class Upcoming extends Command {
 
     for (let i = 0; i < navigators.length; i++) {
       await msg.react(navigators[i]);
-    };
+    }
 
     collector.on('collect', async reaction => {
 
@@ -142,7 +142,7 @@ module.exports = class Upcoming extends Command {
         case terminate instanceof GuildEmoji ? terminate.name : terminate:
           collector.stop();
           break;
-      };
+      }
 
       await reaction.users.remove(message.author.id);
       timeout.refresh();
@@ -155,7 +155,7 @@ module.exports = class Upcoming extends Command {
   async callback(bot, interaction, guild, args) {
     const member = interaction.user;
     const channel = guild.channels.cache.get(interaction.channelId);
-    let type = args.get('type')?.value ?? weekdays[new Date().getDay()];
+    let type = args.get('type')?.value ?? [new Date().getDay()];
 
     await interaction.deferReply();
 
@@ -163,7 +163,7 @@ module.exports = class Upcoming extends Command {
       type = types[types.findIndex(c => c.toLowerCase() === type.toLowerCase())];
     } else {
       type = null;
-    };
+    }
 
     const embed = new Embed(bot, guild)
       .setColor(65475)
@@ -187,11 +187,11 @@ module.exports = class Upcoming extends Command {
         .setThumbnail('https://i.imgur.com/UH1StAo.png');
 
       interaction.editReply({ embeds: [embed] }).then(m => m.timedDelete({ timeout: 60000 }));
-    };
+    }
 
     if (types.includes(type)) {
       res.data = res.data.filter(f => f.type === type);
-    };
+    }
 
     if (res.data.length <= 1) {
       message.delete();
@@ -228,7 +228,7 @@ module.exports = class Upcoming extends Command {
         })
       index++;
       pages.push(embed);
-    };
+    }
 
     // If a user specified a page number then show page if not show pagintor.
     return HopePaginator(bot, interaction, pages, member.id);

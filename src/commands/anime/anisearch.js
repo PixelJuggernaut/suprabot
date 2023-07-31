@@ -37,7 +37,7 @@ module.exports = class Anisearch extends Command {
         MAL.getResultsFromSearch(query).then(data => {
             if (!data) return message.channel.send(message.translate('Animes/anisearch:ABUSCAR_DESC', { query: query })).then(message => { setTimeout(() => { if (!message.deleted) return message.delete() }, 10000) })
 
-            return new Promise(async (resolve, reject) => {
+            return new Promise((resolve, reject) => {
                 let n = 0;
                 const embedder = (data) => {
                     let embed = new Embed(bot, message.guild)
@@ -103,9 +103,9 @@ module.exports = class Anisearch extends Command {
                             .setStyle(ButtonStyle.Secondary),
                     );
 
-                const interactiveMessage = await message.channel.send({ embeds: [embedder(data)], components: [row] });
+                const interactiveMessage = message.channel.send({ embeds: [embedder(data)], components: [row] });
 
-                const buttonCollector = await interactiveMessage.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120000 });
+                const buttonCollector = interactiveMessage.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120000 });
 
                 // find out what emoji was reacted on to update pages
                 buttonCollector.on('collect', async (i) => {
@@ -113,7 +113,7 @@ module.exports = class Anisearch extends Command {
                     switch (Number(i.customId)) {
                         case 1:
                             n = 0;
-                            await interactiveMessage.edit({ embeds: [embedder(data)], components: [row] });
+                            interactiveMessage.edit({ embeds: [embedder(data)], components: [row] });
                             break;
                         case 2:
                             if (!(n < 1)) {
@@ -132,7 +132,7 @@ module.exports = class Anisearch extends Command {
                             await interactiveMessage.edit({ embeds: [embedder(data)], components: [row] });
                             break;
                         case 5:
-                            let c;
+                            // eslint-disable-next-line no-case-declarations
                             let list = new Embed(bot, message.guild)
                                 .setColor(65475)
                             for (let c = 0; c < data.length; c++) {
@@ -166,7 +166,7 @@ module.exports = class Anisearch extends Command {
             MAL.getResultsFromSearch(query).then(data => {
                 if (!data) return interaction.editReply(guild.translate('Animes/anisearch:ABUSCAR_DESC', { query: query })).then(message => { setTimeout(() => { if (!message.deleted) return message.delete() }, 10000) })
 
-                return new Promise(async (resolve, reject) => {
+                return new Promise((resolve, reject) => {
                     let n = 0;
                     const embedder = (data) => {
                         let embed = new Embed(bot, guild)
@@ -232,9 +232,9 @@ module.exports = class Anisearch extends Command {
                                 .setStyle(ButtonStyle.Secondary),
                         );
 
-                    const interactiveMessage = await interaction.editReply({ embeds: [embedder(data)], components: [row] });
+                    const interactiveMessage = interaction.editReply({ embeds: [embedder(data)], components: [row] });
 
-                    const buttonCollector = await interactiveMessage.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120000 });
+                    const buttonCollector = interactiveMessage.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120000 });
 
                     // find out what emoji was reacted on to update pages
                     buttonCollector.on('collect', async (i) => {
@@ -261,7 +261,7 @@ module.exports = class Anisearch extends Command {
                                 await interactiveMessage.edit({ embeds: [embedder(data)], components: [row] });
                                 break;
                             case 5:
-                                let c;
+                                // eslint-disable-next-line no-case-declarations
                                 let list = new Embed(bot, guild)
                                     .setColor(65475)
                                 for (let c = 0; c < data.length; c++) {

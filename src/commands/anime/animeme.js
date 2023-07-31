@@ -54,10 +54,10 @@ module.exports = class Animeme extends Command {
                 .setURL(reddit.link)
                 .setImage(reddit.image)
 
-            return new Promise(async (resolve, reject) => {
-                const sent = await message.channel.send({ embeds: [meme] })
+            return new Promise( (resolve, reject) => {
+                const sent = message.channel.send({ embeds: [meme] })
                 let reactions = ['👍', '👎', '😂', '😮', '😡'];
-                for (let i = 0; i < reactions.length; i++) await sent.react(reactions[i]);
+                for (let i = 0; i < reactions.length; i++) sent.react(reactions[i]);
             })
         })
     }
@@ -95,10 +95,10 @@ module.exports = class Animeme extends Command {
                     .setURL(reddit.link)
                     .setImage(reddit.image)
     
-                return new Promise(async (resolve, reject) => {
-                    const sent = await interaction.editReply({ embeds: [meme] })
+                return new Promise((resolve, reject) => {
+                    const sent = interaction.editReply({ embeds: [meme] })
                     let reactions = ['👍', '👎', '😂', '😮', '😡'];
-                    for (let i = 0; i < reactions.length; i++) await sent.react(reactions[i]);
+                    for (let i = 0; i < reactions.length; i++) sent.react(reactions[i]);
                 })
             })
         } catch (error) {

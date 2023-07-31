@@ -4,8 +4,8 @@ const { Embed } = require(`../../utils`),
   { fetch } = require('undici'),
   { convert: toMarkdown } = require('html-to-markdown'),
   { decode } = require('he'),
-  { mediaFormat, months } = require('../../utils/constants'),
-  text = require('../../utils/string'),
+  { mediaFormat, months } = require('../../src/helpers/constants'),
+  text = require('../../src/helpers/string'),
   animeDB = require(`${process.cwd()}/assets/json/anime.json`),
   Command = require('../../structures/Command.js');
 
@@ -49,7 +49,7 @@ module.exports = class Anirandom extends Command {
           `${message.translate('Animes/anirandom:ARECO_DESC2')} ${settings.prefix}bug.`
         ].join(''))
       return message.channel.send({ embeds: [embed] }).then(async (m) => { if (settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 60000 }) } });
-    };
+    }
 
     // Avisa se obter error pela validação
     if (errors && errors.some(x => x.status === 400)) {
@@ -61,7 +61,7 @@ module.exports = class Anirandom extends Command {
           message.translate('Animes/anirandom:ARECO_DESC5', { prefix: settings.prefix })
         ].join(''))
       return message.channel.send({ embeds: [embed] }).then(async (m) => { if (settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 60000 }) } });
-    };
+    }
 
     // Avisa se obter error devido a outra coisa
     if (errors) {
@@ -73,7 +73,7 @@ module.exports = class Anirandom extends Command {
           message.translate('Animes/anirandom:ARECO_DESC5', { prefix: settings.prefix })
         ].join(''))
       return message.channel.send({ embeds: [embed] }).then(async (m) => { if (settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 60000 }) } });
-    };
+    }
 
     embed
       .setColor(data.Media.coverImage.color || 65475)
@@ -149,7 +149,7 @@ module.exports = class Anirandom extends Command {
             `${guild.translate('Animes/anirandom:ARECO_DESC2')} ${guild.settings.prefix}bug.`
           ].join(''))
         return interaction.editReply({ embeds: [embed] }).then(async (m) => { if (guild.settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 60000 }) } });
-      };
+      }
 
       // Avisa se obter error pela validação
       if (errors && errors.some(x => x.status === 400)) {
@@ -161,7 +161,7 @@ module.exports = class Anirandom extends Command {
             guild.translate('Animes/anirandom:ARECO_DESC5', { prefix: guild.settings.prefix })
           ].join(''))
         return interaction.editReply({ embeds: [embed] }).then(async (m) => { if (guild.settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 60000 }) } });
-      };
+      }
 
       // Avisa se obter error devido a outra coisa
       if (errors) {
@@ -173,7 +173,7 @@ module.exports = class Anirandom extends Command {
             guild.translate('Animes/anirandom:ARECO_DESC5', { prefix: guild.settings.prefix })
           ].join(''))
         return interaction.editReply({ embeds: [embed] }).then(async (m) => { if (guild.settings.ModerationClearReplyToggle === true) { m.timedDelete({ timeout: 60000 }) } });
-      };
+      }
 
       embed
         .setColor(data.Media.coverImage.color || 65475)
