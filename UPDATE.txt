@@ -11,3 +11,4 @@ Done:
 - Botlinks command added
 - Covid informations command removed
 - Remind command added
+- Playstore command added
