@@ -6,7 +6,7 @@ const { Embed } = require(`../../utils`),
   malProducers = require(`${process.cwd()}/assets/json/MAL_Producers.json`),
   { malGenres } = require('../../utils/constants'),
   text = require('../../utils/string')
-Command = require('../../structures/Command.js');
+var Command = require('../../structures/Command.js');
 
 module.exports = class Anime extends Command {
   constructor(bot) {
