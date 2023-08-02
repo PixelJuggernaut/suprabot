@@ -5,7 +5,7 @@ const {
     EmbedBuilder,
   } = require("discord.js");
   const voucher_codes = require("voucher-code-generator");
-  const schema = require("../src/models/Code");
+  const schema = require("@root/src/models/code");
   
   module.exports = {
     name: "gencode",

@@ -1,7 +1,7 @@
 const { Message, PermissionFlagsBits, Client } = require("discord.js");
 const moment = require("moment");
-const Code = require("../../../Models/Code");
-const User = require("../../../Models/User");
+const Code = require("@root/src/models/code");
+const User = require("src/models/User");
 
 module.exports = {
   name: "redeem",
