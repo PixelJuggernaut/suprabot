@@ -1,6 +1,7 @@
 const { getSettings } = require("@schemas/Guild");
 const { commandHandler, contextHandler, statsHandler, suggestionHandler, ticketHandler } = require("@src/handlers");
 const { InteractionType } = require("discord.js");
+const User = require("../src/models/User");
 
 /**
  * @param {import('@src/structures').BotClient} client
@@ -18,6 +19,22 @@ module.exports = async (client, interaction) => {
     await commandHandler.handleSlashCommand(interaction);
   }
 
+  // Premium
+  let user = client.userSettings.get(interaction.author.id);
+  // If there is no user, create it in the Database as "newUser"
+  if (!user) {
+    const findUser = await User.findOne({ Id: interaction.author.id });
+    if (!findUser) {
+      const newUser = await User.create({ Id: interaction.author.id });
+      client.userSettings.set(interaction.author.id, newUser);
+      user = newUser;
+    } else return;
+  }
+  else if (command.premium && user && !user.isPremium) {
+    return interaction.reply({
+      content: `> \`${interaction.author.username}\` You are Not Premium User`,
+    });
+  }
   // Context Menu
   else if (interaction.isContextMenuCommand()) {
     const context = client.contextMenus.get(interaction.commandName);

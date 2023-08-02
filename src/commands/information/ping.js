@@ -5,6 +5,7 @@ module.exports = {
   name: "ping",
   description: "shows the current ping from the bot to the discord servers",
   category: "INFORMATION",
+  premium: true,
   command: {
     enabled: true,
   },
