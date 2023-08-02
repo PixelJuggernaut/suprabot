@@ -2,6 +2,7 @@ const { getSettings } = require("@schemas/Guild");
 const { commandHandler, contextHandler, statsHandler, suggestionHandler, ticketHandler } = require("@src/handlers");
 const { InteractionType } = require("discord.js");
 const User = require("../src/models/User");
+const Guild = require("@schemas/Guild");
 
 /**
  * @param {import('@src/structures').BotClient} client
@@ -30,7 +31,7 @@ module.exports = async (client, interaction) => {
       user = newUser;
     } else return;
   }
-  else if (command.premium && user && !user.isPremium) {
+  else if (Guild.premium && user && !user.isPremium) {
     return interaction.reply({
       content: `> \`${interaction.author.username}\` You are Not Premium User`,
     });
