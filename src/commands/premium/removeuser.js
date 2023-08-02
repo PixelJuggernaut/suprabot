@@ -1,5 +1,5 @@
 const { Message, PermissionFlagsBits, Client } = require("discord.js");
-const User = require("../../../Models/User");
+const User = require("@root/src/models/User");
 
 module.exports = {
   name: "rempremium",

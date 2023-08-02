@@ -1,7 +1,7 @@
 const { getSettings } = require("@schemas/Guild");
 const { commandHandler, contextHandler, statsHandler, suggestionHandler, ticketHandler } = require("@src/handlers");
 const { InteractionType } = require("discord.js");
-const User = require("src/models/User.js");
+const User = require("@root/src/models/User.js");
 const Guild = require("@schemas/Guild");
 
 /**
