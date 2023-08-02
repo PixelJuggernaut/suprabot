@@ -12,7 +12,7 @@ const {
     description: `generate premium codes`,
     userPermissions: PermissionFlagsBits.SendMessages,
     botPermissions: PermissionFlagsBits.SendMessages,
-    category: "Owner",
+    category: "ADMIN",
     /**
      *
      * @param {Client} client

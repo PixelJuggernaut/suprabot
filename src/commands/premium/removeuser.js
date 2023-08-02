@@ -6,7 +6,7 @@ module.exports = {
   description: `remove premium from user`,
   userPermissions: PermissionFlagsBits.SendMessages,
   botPermissions: PermissionFlagsBits.SendMessages,
-  category: "Owner",
+  category: "ADMIN",
   /**
    *
    * @param {Client} client
